@@ -1,10 +1,10 @@
 #!/bin/bash
 
 parent_app=input-remapper
-app_name=xautopresets
+app_name=kdeautopresets
 script_dir=$HOME/.local/bin
 service_dir=$HOME/.config/systemd/user
-working_dir=$HOME/.config/$parent_app
+working_dir=$HOME/.config/$parent_app-2
 # log_file=./install.log
 default_class=_default
 input_remapper_ui=Input-remapper-gtk
@@ -18,7 +18,7 @@ bypass_preset=_Bypass
 # Check if input-remapper .config directory exists
 if [ -d "$working_dir" ]; then
 
-    # Check if previously installed version of xautopresets exists
+    # Check if previously installed version of kdeautopresets exists
     if [ -f "$service_dir/$parent_app-$app_name.service" ] || [ -f "$script_dir/$parent_app-$app_name" ]; then
         echo "Previously installed version of $parent_app-$app_name detected"
 
@@ -52,7 +52,7 @@ if [ -d "$working_dir" ]; then
     # Create global configuration file and populate with default values if one doesn't already exist
     if [ ! -f $working_dir/$app_name.ini ]; then
         echo "Creating configuration file ($app_name.ini) in $working_dir..."
-        xautopresets-config -n
+        kdeautopresets-config -n
         echo "Done!"
     fi
 

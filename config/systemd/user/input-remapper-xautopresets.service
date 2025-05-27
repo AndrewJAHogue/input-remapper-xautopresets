@@ -1,11 +1,11 @@
 [Unit]
-Description=Automatic input-remapper preset manager for systems with access to xdotools
+Description=Automatic input-remapper preset manager for KDE Wayland systems with access to kdotool 
 PartOf=graphical-session.target
 After=input-remapper.service
 
 [Service]
 Environment=DISPLAY=:0
-ExecStart=%h/.local/bin/input-remapper-xautopresets
+ExecStart=%h/.local/bin/input-remapper-kdeautopresets
 
 [Install]
 WantedBy=default.target

@@ -1,25 +1,25 @@
-# input-remapper-xautopresets
+# input-remapper-kdeautopresets
 ## Automatic input-remapper preset manager for systems with access to xdotool and xprop
-Automatically changes the active input-remapper preset for each connected device based on active window's class, with optional support for further differentiating between different windows of the same class based on the window's title. Devices can be configured individually, otherwise they will default to the global configuration. `input-remapper-xautopresets` makes use of `input-remapper-control` to track devices, so it's aware when devices are connected/disconnected. The configuration file also support live-editing, so no need to restart after making changes; just save the file and xautopresets will know about the changes.
+Automatically changes the active input-remapper preset for each connected device based on active window's class, with optional support for further differentiating between different windows of the same class based on the window's title. Devices can be configured individually, otherwise they will default to the global configuration. `input-remapper-kdeautopresets` makes use of `input-remapper-control` to track devices, so it's aware when devices are connected/disconnected. The configuration file also support live-editing, so no need to restart after making changes; just save the file and kdeautopresets will know about the changes.
 
 ## Installation
   
 - Use your preferred method to download either the release or project folder
 - Unzip the package as necessary
-- Run `/path/to/download/input-remapper-xautopresets/install`
+- Run `/path/to/download/input-remapper-kdeautopresets/install`
   
 The installer will copy all necessary files to their correct locations, and enable/start the required service  
 
 It is safe to run `install` over any previously installed/currently running version. If an update is incompatible with previous configuration files, `install` will automatically import and convert them without modifying the original files.
 
 ## Usage
-### input-remapper-xautopresets
+### input-remapper-kdeautopresets
 
-Use `systemctl --user [enable|disable|restart|start|status|stop] input-remapper-xautopresets.service` to change service state
+Use `systemctl --user [enable|disable|restart|start|status|stop] input-remapper-kdeautopresets.service` to change service state
 
-Alternatively, `input-remapper-xautopresets` can be used directly as an interface for `systemctl`:
+Alternatively, `input-remapper-kdeautopresets` can be used directly as an interface for `systemctl`:
 ```
-input-remapper-xautopresets v1.1.5
+input-remapper-kdeautopresets v1.1.5
 Automatic input-remapper preset manager for systems with access to xdotool
 
 Valid options:
@@ -28,39 +28,39 @@ Valid options:
 
 Valid arguments:
 [enable|disable|restart|start|status|stop]:
-    runs systemctl --user [command] input-remapper-xautopresets.service
+    runs systemctl --user [command] input-remapper-kdeautopresets.service
 
 getwindowinfo:
     Select a window with the mouse and print the window's class and title
 
 Example useage:
-    input-remapper-xautopresets start
-    input-remapper-xautopresets getwindowinfo
+    input-remapper-kdeautopresets start
+    input-remapper-kdeautopresets getwindowinfo
 
 Either provide a vaild argument or envoke 'systemctl' directly.
 ```
-`input-remapper-xautopresets` will not allow you to run it directly. It must be controlled through `systemctl`, either directly, or through the interface provided by `input-remapper-xautopresets`
+`input-remapper-kdeautopresets` will not allow you to run it directly. It must be controlled through `systemctl`, either directly, or through the interface provided by `input-remapper-kdeautopresets`
 
-### xautopresets-config
-Currently only capable of creating a new xautopresets.ini file, generating it from imported .conf data from previous versions if it exists, or else generating a default one if not.
+### kdeautopresets-config
+Currently only capable of creating a new kdeautopresets.ini file, generating it from imported .conf data from previous versions if it exists, or else generating a default one if not.
 ```
-xautopresets-config v0.1.5
-Configuration file manipulator for xautopresets
+kdeautopresets-config v0.1.5
+Configuration file manipulator for kdeautopresets
 
 Valid options:
 -h        Display this table
--n        Generate new default xautopresets.ini file,
+-n        Generate new default kdeautopresets.ini file,
           importing data from previous versions if available
 ```
 
 ## Uninstallation
-`/path/to/download/input-remapper-xautopresets/uninstall`
+`/path/to/download/input-remapper-kdeautopresets/uninstall`
 ```
-input-remapper-xautopresets uninstaller
+input-remapper-kdeautopresets uninstaller
 
 Uninstaller MUST be passed one or more options; it will only remove what you tell it
 
--c          Remove configuration file, 'xautopresets.ini'
+-c          Remove configuration file, 'kdeautopresets.ini'
 -h          Display this menu
 -l          Remove all log files
 -s          Remove script and service files
@@ -70,7 +70,7 @@ Uninstaller MUST be passed one or more options; it will only remove what you tel
 `uninstall` requires additional confirmation for each category in case you made a mistake. `uninstall -clso` will remove everything
 
 ## Configuration
-Once installed, input-remapper-xautopresets uses the following file tree:
+Once installed, input-remapper-kdeautopresets uses the following file tree:
 ```
 ~/
 |-> .config/
@@ -78,30 +78,30 @@ Once installed, input-remapper-xautopresets uses the following file tree:
 |   |   |-> logs/
 |   |   |   |-> .active             (Temporary record of currently active profiles on all devices)
 |   |   |   |-> [Device Name].log   (Device-specific log file)
-|   |   |   |-> xautopresets.log    (Global log file)
+|   |   |   |-> kdeautopresets.log    (Global log file)
 |   |   |
-|   |   |-> xautopresets.ini    (Configuration file)
+|   |   |-> kdeautopresets.ini    (Configuration file)
 |   | 
 |   |-> systemd/user/
-|       |-> input-remapper-xautopresets.service (systemd user service file)
+|       |-> input-remapper-kdeautopresets.service (systemd user service file)
 |     
 |-> .local/bin/
-    |-> input-remapper-xautopresets (#!/bin/bash core script)
-    |-> xautopresets-config         (#!/bin/bash config-file manipulation script)
+    |-> input-remapper-kdeautopresets (#!/bin/bash core script)
+    |-> kdeautopresets-config         (#!/bin/bash config-file manipulation script)
 ```
 ### Reserved Values
 `_DEFAULT` is a window class used internally by the script. The preset assigned to this class will be loaded any time no other preset is configured, or if the configured preset cannot be located.
 
 `_STOP` is a preset name used internally by the script. This is the preset that will disable `input-remapper` injection.
 
-`_IGNORE` is a preset name used internally by the script. This preset tells `xautopresets` to ignore the window change and do nothing.
+`_IGNORE` is a preset name used internally by the script. This preset tells `kdeautopresets` to ignore the window change and do nothing.
 
-### xautopresets.ini
+### kdeautopresets.ini
 Typical .ini format with section headers in square brackets ('[]'), and semicolon comments (';')
 
 
 ##### A Note on how the script works
-For every window change, there are a total of four (4) configuration sections that may be relevant to each device should they exist: `[GLOBAL]`, `[GLOBAL:<CLASSNAME>]`, `[<DEVICENAME>]`, & `[<DEVICENAME>:<CLASSNAME>]`. For each device it is managing, `xautopresets` will:
+For every window change, there are a total of four (4) configuration sections that may be relevant to each device should they exist: `[GLOBAL]`, `[GLOBAL:<CLASSNAME>]`, `[<DEVICENAME>]`, & `[<DEVICENAME>:<CLASSNAME>]`. For each device it is managing, `kdeautopresets` will:
 1. Grab these four sections
 2. Order them in a list of increasing priority
     - `[GLOBAL]` is the lowest priority and read first.
@@ -115,7 +115,7 @@ For every window change, there are a total of four (4) configuration sections th
 
 #### [PROGRAM]
 ```
-; These settings control the behavior of xautopresets.
+; These settings control the behavior of kdeautopresets.
 ; Valid settings shown in parentheses; first shown is default.
 
 _EXECUTION=_PARALLEL
@@ -135,14 +135,14 @@ _SECTIONPRIORITY=_DEVICE
 
 _DEFAULTPRIORITY=_SECTION
 ; ( _SECTION | _CLASS )
-; Controls whether xautopresets applies a default preset from a higher
+; Controls whether kdeautopresets applies a default preset from a higher
 ; priority section before a class-name match from a lower one.
 ; Setting this to _CLASS means a <CLASSNAME> match in [GLOBAL] will be
 ; preferred over a _DEFAULT match in [<DEVICENAME>:<CLASSNAME>]
 ```
 
 #### [IGNORE]
-Uncommented devices listed in this section will not be managed by xautopresets
+Uncommented devices listed in this section will not be managed by kdeautopresets
 
 #### [GLOBAL] & [DEVICENAME]
 These sections contain a list of window classes paired with a list of input-remapper preset names. Preset names should not include the `.json` extension.
@@ -168,14 +168,14 @@ Input-remapper-gtk=_STOP
   
 `Input-remapper-gtk` is the window class name for `input-remapper`'s gui configuration tool. Injection needs to be stopped to make changes, so this seemed appropriate. Feel free to change.  
   
-Use `input-remapper-xautopresets getwindowinfo` to get window class names for your applications. It is highly recommended that you copy and paste from here into your .ini file.
+Use `input-remapper-kdeautopresets getwindowinfo` to get window class names for your applications. It is highly recommended that you copy and paste from here into your .ini file.
 
 #### [GLOBAL:CLASSNAME] & [DEVICENAME:CLASSNAME]
 These sections contain a list of window titles paried with a list of input-remapper preset names. It is intended to give the user the ability to have more than one configured preset for a given application, and change between them based on the window's name as shown in the title bar. Same basic syntax as `[GLOBAL]` and `[<DEVICENAME>]`, except:
 ```
 example Window Title=Example Preset Name
 ```
-Use `input-remapper-xautopresets getwindowinfo` to get window titles, and once again, copy/pasting from here is advised. Wildcards and spaces supported just like with `xautopresets.conf`.
+Use `input-remapper-kdeautopresets getwindowinfo` to get window titles, and once again, copy/pasting from here is advised. Wildcards and spaces supported just like with `kdeautopresets.conf`.
 
 ##### Example [GLOBAL:firedragon]
 ```
@@ -184,7 +184,7 @@ _DEFAULT=FireDragon
 ```
 In this example, when using the FireDragon web browser (Class Name `firedragon`), any time a browser tab whose title includes the string `- YouTube -` is active, `Media.json` will be enabled on this device. For all other tabs, `FireDragon.json` will be enabled
 
-### input-remapper-xautopresets.service
+### input-remapper-kdeautopresets.service
 You can modify `Environment=DISPLAY=:0` to limit which displays the service monitors. Avoid other modifications unless you know what you're doing.  
   
-Use `systemctl --user daemon-reload` every time you make changes to `input-remapper-xautopresets.service` 
+Use `systemctl --user daemon-reload` every time you make changes to `input-remapper-kdeautopresets.service` 

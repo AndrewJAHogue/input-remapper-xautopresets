@@ -1,8 +1,8 @@
 parent_app=input-remapper
-app_name=xautopresets
+app_name=kdeautopresets
 script_dir=$HOME/.local/bin
 service_dir=$HOME/.config/systemd/user
-working_dir=$HOME/.config/$parent_app
+working_dir=$HOME/.config/$parent_app-2
 log_dir=working_dir/logs
 dev_dir=$working_dir/presets
 class_conf_dir=classes
@@ -35,7 +35,7 @@ Help ()
 {
     echo -e "\n$parent_app-$app_name uninstaller\n"
     echo -e "Uninstaller MUST be passed one or more options; it will only remove what you tell it\n"
-    echo "  -c          Remove configuration file, 'xautopresets.ini'"
+    echo "  -c          Remove configuration file, 'kdeautopresets.ini'"
     echo "  -h          Display this menu"
     echo "  -l          Remove all log files"
     echo "  -s          Remove script and service files"
@@ -145,7 +145,7 @@ while getopts :chlso option; do
     echo "You have chosen to run the uninstaller with option '-${option}'."
     case "${option}" in
 
-        c) echo "This will remove your configuration file, 'xautopresets.ini'"
+        c) echo "This will remove your configuration file, 'kdeautopresets.ini'"
         ConfirmationDialogue
         [ $(GetConfirmation) == true ] && RemoveConfig ;;
 
