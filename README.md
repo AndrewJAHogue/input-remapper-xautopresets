@@ -1,5 +1,8 @@
 # input-remapper-kdeautopresets
-## Automatic input-remapper preset manager for systems with access to xdotool and xprop
+## Automatic input-remapper preset manager for KDE Wayland systems with access to kdotool
+### Changes
+* **Functionally identical to *input-remapper-xautopresets* save for the inability to select a window using *getwindowinfo* as that functionality is not available with kdotool.**
+
 Automatically changes the active input-remapper preset for each connected device based on active window's class, with optional support for further differentiating between different windows of the same class based on the window's title. Devices can be configured individually, otherwise they will default to the global configuration. `input-remapper-kdeautopresets` makes use of `input-remapper-control` to track devices, so it's aware when devices are connected/disconnected. The configuration file also support live-editing, so no need to restart after making changes; just save the file and kdeautopresets will know about the changes.
 
 ## Installation
