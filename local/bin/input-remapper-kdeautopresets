@@ -255,7 +255,9 @@ ConfigureDevice ()  # Input: Device name, window class & title
     echo "Class: $class" >> "$dev_log"
     echo -e "Title: $title\n" >> "$dev_log"
 
+    shopt -s nocasematch
     CombineSections "$class" "$device" | PresetList "$class" "$title" "$device"| TargetPreset "$device" | SetPreset "$device"
+    shopt -u nocasematch
 
     echo -e "\n\n---------------------------------------------------------------\n\n" >> "$dev_log"
     echo "DEVICE:[$device] Done!" >> "$app_log"
